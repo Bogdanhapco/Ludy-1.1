@@ -1,7 +1,4 @@
-streamlit
+ streamlit
+min-dalle
 torch
-torchvision
-diffusers
-transformers
-accelerate
 pillow
