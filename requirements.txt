@@ -1,4 +1,4 @@
- streamlit
+streamlit
 min-dalle
 torch
 pillow
