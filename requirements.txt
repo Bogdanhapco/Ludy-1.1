@@ -1,4 +1,5 @@
 streamlit
 min-dalle
 torch
+torchvision
 pillow
