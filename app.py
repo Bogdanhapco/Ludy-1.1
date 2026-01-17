@@ -63,4 +63,4 @@ if st.button("Generate Image"):
         st.warning("Please enter a prompt!")
 
 st.markdown("---")
-st.caption("Ludy 1.1 • Powered by SmartBot Ludy 1.1 • Running on SmartBot Data Center • Created by BotDevelopmentAI")
+st.caption("Ludy 1.1 • Powered by Mini-DALL-E • Running on Streamlit Cloud • Created by Bogdan")
