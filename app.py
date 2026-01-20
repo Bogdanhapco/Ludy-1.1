@@ -6,71 +6,72 @@ from streamlit_autorefresh import st_autorefresh
 # --- PAGE CONFIG ---
 st.set_page_config(page_title="BotDevelopmentAI Data Center", layout="wide")
 
-# Heartbeat: Refresh every 2 seconds
-st_autorefresh(interval=2000, key="data_center_heartbeat")
+# Real-Time Pulse: Refresh every 2 seconds
+st_autorefresh(interval=2000, key="neural_heartbeat")
 
-# --- DARK THEME STYLING ---
+# --- CYBERPUNK INFRASTRUCTURE STYLING ---
 st.markdown("""
     <style>
-    .stApp { background-color: #020202; color: #00ffcc; font-family: 'Courier New', monospace; }
-    .stat-box {
-        border: 2px solid #00ffcc;
-        padding: 25px;
-        border-radius: 5px;
-        background: rgba(0, 255, 204, 0.03);
-        text-align: center;
-        box-shadow: 0 0 20px rgba(0, 255, 204, 0.1);
+    .stApp { background-color: #010101; color: #00ffcc; font-family: 'Courier New', monospace; }
+    .node-card {
+        border-left: 5px solid #00ffcc;
+        background: rgba(0, 255, 204, 0.05);
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 0 10px 10px 0;
     }
-    .glitch { font-weight: bold; text-transform: uppercase; letter-spacing: 3px; }
+    .metric-text { font-size: 24px; font-weight: bold; color: #ffffff; }
+    h2 { color: #00ffcc !important; border-bottom: 1px solid #333; padding-bottom: 10px; }
     </style>
     """, unsafe_allow_html=True)
 
-st.markdown("<h1 class='glitch'>🛰️ BotDevelopmentAI Data Center Status</h1>", unsafe_allow_html=True)
-st.write(f"SYSTEM TIME: {time.strftime('%Y-%m-%d %H:%M:%S')} | STATUS: OPERATIONAL")
-st.divider()
+st.title("🛰️ BotDevelopmentAI Data Center")
+st.write(f"MODEL CLUSTER: GENIS-V3 | ACTIVE NODES: {random.randint(148, 150)}/150 | COOLING: CRYOGENIC")
 
-# --- INFRASTRUCTURE MATH ---
-# These are live-simulated based on high-end 2026 Rubin/Vera specs
-gpu_percent = round(random.uniform(22.5, 28.1), 1)
-nodes_active = random.randint(146, 150)
-vram_used = round((gpu_percent / 100) * 1536, 1) # Based on 1.5TB total
-hourly_cost = round(12.50 + random.uniform(-0.15, 0.15), 2)
-
-# --- TOP METRICS ---
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    st.markdown("<div class='stat-box'>", unsafe_allow_html=True)
-    st.metric("OPERATIONAL NODES", f"{nodes_active}/150", "ONLINE")
-    st.caption("Rubin-Factory Scale")
-    st.markdown("</div>", unsafe_allow_html=True)
-
-with col2:
-    st.markdown("<div class='stat-box'>", unsafe_allow_html=True)
-    st.metric("GPU UTILIZATION", f"{gpu_percent}%", f"{random.uniform(-0.5, 0.5):.1f}%")
-    st.caption("Real-Time Load")
-    st.markdown("</div>", unsafe_allow_html=True)
-
-with col3:
-    st.markdown("<div class='stat-box'>", unsafe_allow_html=True)
-    st.metric("VRAM USAGE", f"{vram_used} GB", "/ 1536 GB")
-    st.caption("Active Liquid Cache")
-    st.markdown("</div>", unsafe_allow_html=True)
-
-with col4:
-    st.markdown("<div class='stat-box'>", unsafe_allow_html=True)
-    st.metric("HOURLY OPEX", f"${hourly_cost}", f"{(hourly_cost/24):.3f}/min")
-    st.caption("Estimated Power/Compute")
-    st.markdown("</div>", unsafe_allow_html=True)
+# --- TOP ROW: GLOBAL STATS ---
+col1, col2, col3 = st.columns(3)
+total_vram_load = random.uniform(24.2, 29.8)
+col1.metric("GLOBAL VRAM LOAD", f"{total_vram_load:.1f}%", f"{random.uniform(-0.2, 0.2):.1f}%")
+col2.metric("THROUGHPUT", f"{random.randint(1200, 1450)} T/s", "STABLE")
+col3.metric("FABRIC LATENCY", "0.002ms", "OPTIMAL")
 
 st.divider()
 
-# --- SYSTEM LOGS ---
-st.subheader("📋 Core Engine Logs")
+# --- MIDDLE SECTION: GENIS vs LUDY ---
+left_col, right_col = st.columns(2)
+
+with left_col:
+    st.markdown("## 🧠 GENIS-V3 (Language Engine)")
+    st.markdown("<div class='node-card'>", unsafe_allow_html=True)
+    st.write("**Architecture:** Liquid Transformer v4")
+    st.write("**VRAM Allocated:** 1,024 GB (HBM3e)")
+    st.write("**Current Task:** Contextual Reasoning & Logic")
+    
+    # Live Load Gauge
+    genis_load = random.randint(15, 22)
+    st.progress(genis_load / 100)
+    st.write(f"Inference Load: {genis_load}%")
+    st.markdown("</div>", unsafe_allow_html=True)
+
+with right_col:
+    st.markdown("## 🎨 SMARTBOT LUDY (Visual Engine)")
+    st.markdown("<div class='node-card'>", unsafe_allow_html=True)
+    st.write("**Architecture:** Multi-Modal Diffusion (Schnell)")
+    st.write("**VRAM Allocated:** 512 GB (HBM3e)")
+    st.write("**Current Task:** High-Fidelity Pixel Synthesis")
+    
+    # Live Load Gauge
+    ludy_load = random.randint(35, 48)
+    st.progress(ludy_load / 100)
+    st.write(f"Synthesis Load: {ludy_load}%")
+    st.markdown("</div>", unsafe_allow_html=True)
+
+# --- BOTTOM SECTION: SYSTEM LOGS ---
+st.subheader("📋 Neural Node Logs")
 logs = [
-    f"NODE-{random.randint(1,150)}: Handshake verified. Model Genis-V3 engaged.",
-    f"THERMAL: Liquid cooling at 64°C. Fans at 45%.",
-    f"NETWORK: Routing 1.6T data packets through Olympus fabric.",
-    f"MODEL: VRAM allocation successful for Genis-V3 inference."
+    f"[{time.strftime('%H:%M:%S')}] NODE-012: Genis-V3 processing logic-stream.",
+    f"[{time.strftime('%H:%M:%S')}] NODE-085: SmartBot Ludy allocated 24GB to new prompt.",
+    f"[{time.strftime('%H:%M:%S')}] SYSTEM: 1.5TB VRAM Cache health 100%.",
+    f"[{time.strftime('%H:%M:%S')}] FABRIC: East-West traffic optimized across 150 nodes."
 ]
 st.code("\n".join(logs), language="bash")
