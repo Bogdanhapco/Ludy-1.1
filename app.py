@@ -44,7 +44,7 @@ with c1:
     st.caption("INFRASTRUCTURE: 150 NODES // CLUSTER: RUBIN-V3 // STATUS: NOMINAL")
 with c2:
     st.write(f"**SYNC:** {time.strftime('%H:%M:%S')}")
-    st.write("**AUTH:** BOTDEV_ADMIN")
+    st.write("**AUTH:** BotDevelopmentAI")
 
 st.divider()
 
@@ -97,3 +97,4 @@ with right:
 # --- 7. LOGS ---
 st.divider()
 st.code(f"[{time.strftime('%H:%M:%S')}] OK: All 150 Rubin nodes reporting healthy.\n[{time.strftime('%H:%M:%S')}] INFO: Load balanced across Genis and Ludy sub-clusters.\n[{time.strftime('%H:%M:%S')}] KERNEL: Liquid cooling cycle successful.", language="bash")
+
