@@ -27,7 +27,7 @@ st.markdown("""
 c1, c2 = st.columns([3, 1])
 with c1:
     st.markdown("<h1 style='letter-spacing:-1px;'>NETWORK OPERATIONS CENTER (NOC)</h1>", unsafe_allow_html=True)
-    st.caption("INTERNAL INFRASTRUCTURE MONITOR // BOTDEVELOPMENTAI CORP.")
+    st.caption("INTERNAL INFRASTRUCTURE MONITOR // BotDevelopmentAI.")
 with c2:
     st.write(f"**ENCRYPTION:** AES-256-GCM")
     st.write(f"**SYSTEM TIME:** {time.strftime('%H:%M:%S')}")
@@ -75,7 +75,7 @@ st.divider()
 left, right = st.columns(2)
 
 with left:
-    st.markdown("<h2 class='engine-header'>🧠 Genis-V3 Engine</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 class='engine-header'>🧠 Genis-1.2 pro</h2>", unsafe_allow_html=True)
     st.write("**Model Type:** Autoregressive Liquid Transformer")
     st.write(f"**HBM3e Allocation:** 1,024 GB")
     st.metric("Inference Load", f"{genis_load:.2f}%", f"{random.uniform(-0.1, 0.1):.2f}%")
@@ -83,7 +83,7 @@ with left:
     st.code(f"STATUS: NodeGroup-Alpha routing tokens...", language="bash")
 
 with right:
-    st.markdown("<h2 class='engine-header'>🎨 SmartBot Ludy Engine</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 class='engine-header'>🎨 SmartBot Ludy</h2>", unsafe_allow_html=True)
     st.write("**Model Type:** Multi-Modal Latent Diffusion")
     st.write(f"**HBM3e Allocation:** 512 GB")
     st.metric("Synthesis Load", f"{ludy_load:.2f}%", f"{random.uniform(-0.5, 0.5):.2f}%")
@@ -100,3 +100,4 @@ logs = [
     f"[{time.strftime('%H:%M:%S')}] NET: BotDevelopmentAI internal fabric link stable."
 ]
 st.code("\n".join(logs), language="bash")
+
