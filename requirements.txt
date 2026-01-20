@@ -1,5 +1,5 @@
 streamlit
-min-dalle
-torch
-torchvision
-pillow
+groq
+requests
+Pillow
+streamlit-autorefresh
