@@ -1,90 +1,102 @@
 import streamlit as st
 import random
 import time
-import pandas as pd
 from streamlit_autorefresh import st_autorefresh
 
 # --- 1. SYSTEM CONFIG ---
 st.set_page_config(page_title="BotDevelopmentAI | NOC", layout="wide")
-st_autorefresh(interval=2500, key="noc_heartbeat") # Refresh every 2.5s
+st_autorefresh(interval=2500, key="noc_heartbeat") # Live pulse every 2.5s
 
-# --- 2. DARK-OPS STYLING ---
+# --- 2. PROFESSIONAL DARK THEME ---
 st.markdown("""
     <style>
     .stApp { background-color: #030303; color: #00ffcc; font-family: 'IBM Plex Mono', monospace; }
-    .node-active { height: 12px; width: 12px; background-color: #00ffcc; border-radius: 2px; display: inline-block; margin: 2px; box-shadow: 0 0 5px #00ffcc; }
-    .node-idle { height: 12px; width: 12px; background-color: #1a1a1a; border-radius: 2px; display: inline-block; margin: 2px; }
-    .stat-label { color: #888; font-size: 0.8rem; text-transform: uppercase; }
-    .stat-value { font-size: 1.8rem; font-weight: bold; color: #fff; }
+    .stat-label { color: #888; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+    .stat-value { font-size: 2rem; font-weight: bold; color: #fff; }
+    .node-box {
+        border: 1px solid #1a1a1a;
+        padding: 10px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.02);
+    }
+    .engine-header { color: #00ffcc !important; border-bottom: 2px solid #00ffcc; padding-bottom: 5px; margin-bottom: 15px; }
     </style>
     """, unsafe_allow_html=True)
 
-# --- 3. HEADER ---
+# --- 3. TOP NAV / HEADER ---
 c1, c2 = st.columns([3, 1])
 with c1:
     st.markdown("<h1 style='letter-spacing:-1px;'>NETWORK OPERATIONS CENTER (NOC)</h1>", unsafe_allow_html=True)
     st.caption("INTERNAL INFRASTRUCTURE MONITOR // BOTDEVELOPMENTAI CORP.")
 with c2:
-    st.write(f"**ENCRYPTION:** AES-256")
-    st.write(f"**UPTIME:** 99.9998%")
+    st.write(f"**ENCRYPTION:** AES-256-GCM")
+    st.write(f"**SYSTEM TIME:** {time.strftime('%H:%M:%S')}")
 
 st.divider()
 
-# --- 4. MODEL ALLOCATION ENGINE ---
-# Real-time simulation of load across 1.5TB VRAM
-genis_load = random.uniform(18.5, 24.2)
-ludy_load = random.uniform(38.1, 46.5)
-total_usage_pct = (genis_load + ludy_load) / 2
+# --- 4. CORE ENGINE TELEMETRY ---
+# Dynamic load simulation
+genis_load = random.uniform(19.2, 23.8)
+ludy_load = random.uniform(39.5, 47.1)
+total_vram_total = 1536  # 1.5 TB Total
+current_vram_gb = round(total_vram_total * ((genis_load + ludy_load) / 200), 1)
 
 col1, col2, col3, col4 = st.columns(4)
 with col1:
-    st.markdown(f"<p class='stat-label'>Active Models</p><p class='stat-value'>Genis + Ludy</p>", unsafe_allow_html=True)
+    st.markdown("<p class='stat-label'>Compute Nodes</p><p class='stat-value'>150 / 150</p>", unsafe_allow_html=True)
 with col2:
-    st.markdown(f"<p class='stat-label'>Total VRAM Used</p><p class='stat-value'>{round(1536 * (total_usage_pct/100), 1)} GB</p>", unsafe_allow_html=True)
+    st.markdown("<p class='stat-label'>Total VRAM Saturation</p><p class='stat-value'>{} GB</p>".format(current_vram_gb), unsafe_allow_html=True)
 with col3:
-    st.markdown(f"<p class='stat-label'>GPU Saturation</p><p class='stat-value'>{round(total_usage_pct, 1)}%</p>", unsafe_allow_html=True)
+    st.markdown("<p class='stat-label'>Cluster Efficiency</p><p class='stat-value'>98.4%</p>", unsafe_allow_html=True)
 with col4:
-    st.markdown(f"<p class='stat-label'>Node Count</p><p class='stat-value'>150 / 150</p>", unsafe_allow_html=True)
-
-# --- 5. THE INFRASTRUCTURE GRID (150 Nodes) ---
-st.write("### 🔲 COMPUTE FABRIC (150 NODES)")
-# Visualizing 150 nodes as small glowing squares
-node_html = ""
-for i in range(150):
-    # Higher load means more nodes look "bright"
-    status = "node-active" if random.random() < (total_usage_pct/100) + 0.3 else "node-idle"
-    node_html += f'<div class="{status}"></div>'
-st.markdown(f'<div style="line-height: 0;">{node_html}</div>', unsafe_allow_html=True)
+    st.markdown("<p class='stat-label'>Core Temperature</p><p class='stat-value'>64.2°C</p>", unsafe_allow_html=True)
 
 st.divider()
 
-# --- 6. MODEL-SPECIFIC TELEMETRY ---
+# --- 5. DETAILED NODE MATRIX (NUMBERS ONLY) ---
+st.markdown("### 📊 INFRASTRUCTURE NODE MATRIX")
+# Displaying a grid of load percentages instead of squares
+node_cols = st.columns(5)
+for i in range(5):
+    with node_cols[i]:
+        for j in range(3): # Shows 15 sample node readings
+            node_id = (i * 3 + j) + 1
+            node_load = round(random.uniform(20.0, 50.0), 1)
+            st.markdown(f"""
+                <div class='node-box'>
+                    <span style='color:#555; font-size:10px;'>NODE-{node_id:03d}</span><br/>
+                    <span style='color:#00ffcc;'>LOAD: {node_load}%</span>
+                </div>
+            """, unsafe_allow_html=True)
+
+st.divider()
+
+# --- 6. MODEL-SPECIFIC METRICS ---
 left, right = st.columns(2)
 
 with left:
-    st.subheader("🧠 Genis-V3 Engine")
-    st.write("Context Window: 128k Tokens // Quantization: FP8")
+    st.markdown("<h2 class='engine-header'>🧠 Genis-V3 Engine</h2>", unsafe_allow_html=True)
+    st.write("**Model Type:** Autoregressive Liquid Transformer")
+    st.write(f"**HBM3e Allocation:** 1,024 GB")
+    st.metric("Inference Load", f"{genis_load:.2f}%", f"{random.uniform(-0.1, 0.1):.2f}%")
     st.progress(genis_load / 100)
-    st.caption(f"Throughput: {random.randint(85, 110)} tokens/sec per node")
-    
-    # Tiny mini-log for Genis
-    st.code(f"> Logic sequence validated at Node-{random.randint(1,75)}\n> Response latency: 12ms", language="bash")
+    st.code(f"STATUS: NodeGroup-Alpha routing tokens...", language="bash")
 
 with right:
-    st.subheader("🎨 SmartBot Ludy Engine")
-    st.write("Architecture: Latent Diffusion // Sampling: 4-Step Schnell")
+    st.markdown("<h2 class='engine-header'>🎨 SmartBot Ludy Engine</h2>", unsafe_allow_html=True)
+    st.write("**Model Type:** Multi-Modal Latent Diffusion")
+    st.write(f"**HBM3e Allocation:** 512 GB")
+    st.metric("Synthesis Load", f"{ludy_load:.2f}%", f"{random.uniform(-0.5, 0.5):.2f}%")
     st.progress(ludy_load / 100)
-    st.caption(f"Synthesis Rate: {random.uniform(1.2, 1.8):.2f} images/sec")
-    
-    # Tiny mini-log for Ludy
-    st.code(f"> Pixel buffer allocated at Node-{random.randint(76,150)}\n> Denoising cluster online", language="bash")
+    st.code(f"STATUS: NodeGroup-Beta rendering pixels...", language="bash")
 
-# --- 7. LIVE SYSTEM LOGS ---
-st.write("### 📝 CORE KERNEL LOGS")
+# --- 7. CORE KERNEL LOGS ---
+st.divider()
+st.subheader("📝 Live System Logs")
 logs = [
-    f"[{time.strftime('%H:%M:%S')}] OK: HBM3e Memory clock synchronized at 1.2GHz.",
-    f"[{time.strftime('%H:%M:%S')}] INFO: Balancing workload for Genis-V3 (Node Group A).",
-    f"[{time.strftime('%H:%M:%S')}] WARN: Thermal increase on Node-112. Cooling increased to 80%.",
-    f"[{time.strftime('%H:%M:%S')}] OK: SmartBot Ludy batch processing initialized."
+    f"[{time.strftime('%H:%M:%S')}] SYS: All 150 nodes responding. Latency 0.002ms.",
+    f"[{time.strftime('%H:%M:%S')}] KERNEL: Genis-V3 optimized via FlashAttention-3.",
+    f"[{time.strftime('%H:%M:%S')}] MEM: VRAM scrubbing complete on Ludy cluster.",
+    f"[{time.strftime('%H:%M:%S')}] NET: BotDevelopmentAI internal fabric link stable."
 ]
 st.code("\n".join(logs), language="bash")
