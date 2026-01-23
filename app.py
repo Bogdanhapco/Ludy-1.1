@@ -80,7 +80,7 @@ left, right = st.columns(2)
 
 with left:
     st.markdown("<div class='engine-card'>", unsafe_allow_html=True)
-    st.subheader("🧠 Genis-1.2 pro")
+    st.subheader("🧠 Genis-2.0 pro")
     st.write("Task: Logic & Reasoning Cluster")
     st.progress(genis_load / 100)
     st.caption(f"Memory Saturation: {round(1024 * (genis_load/100), 1)} GB / 1,024 GB")
@@ -88,7 +88,7 @@ with left:
 
 with right:
     st.markdown("<div class='engine-card'>", unsafe_allow_html=True)
-    st.subheader("🎨 SmartBot Ludy")
+    st.subheader("🎨 Ludy 2.0")
     st.write("Task: Pixel Synthesis & Diffusion")
     st.progress(ludy_load / 100)
     st.caption(f"Memory Saturation: {round(512 * (ludy_load/100), 1)} GB / 512 GB")
@@ -97,5 +97,6 @@ with right:
 # --- 7. LOGS ---
 st.divider()
 st.code(f"[{time.strftime('%H:%M:%S')}] OK: All 150 Rubin nodes reporting healthy.\n[{time.strftime('%H:%M:%S')}] INFO: Load balanced across Genis and Ludy sub-clusters.\n[{time.strftime('%H:%M:%S')}] KERNEL: Liquid cooling cycle successful.", language="bash")
+
 
 
